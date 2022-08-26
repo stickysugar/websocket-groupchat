@@ -67,6 +67,11 @@ class Room {
       member.send(JSON.stringify(data));
     }
   }
+
+  // what to do??
+  // showJoke(data) {
+  //     member.send(JSON.stringify(data));
+  // }
 }
 
 module.exports = Room;

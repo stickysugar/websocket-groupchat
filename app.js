@@ -28,18 +28,18 @@ const ChatUser = require("./ChatUser");
 app.ws("/chat/:roomName", function (ws, req, next) {
   try {
     const user = new ChatUser(
-        ws.send.bind(ws), // fn to call to message this user
-        req.params.roomName, // name of room for user
+      ws.send.bind(ws), // fn to call to message this user
+      req.params.roomName, // name of room for user
     );
 
     // register handlers for message-received, connection-closed
 
-    ws.on("message", function (data) {
-      try {
-        user.handleMessage(data);
-      } catch (err) {
-        console.error(err);
-      }
+    ws.on("message", async function (data) {
+        try {
+          user.handleMessage(data);
+        } catch (err) {
+          console.error(err);
+        }
     });
 
     ws.on("close", function () {
